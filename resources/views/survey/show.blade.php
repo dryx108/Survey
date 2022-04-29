@@ -7,7 +7,7 @@
 
         <h1>{{ $questionnaire->title }}</h1>
 
-        <form action="#" method="post">
+        <form action="/surveys/{{ $questionnaire->id}}-{{ Str::slug($questionnaire->title) }}" method="post">
 
             @csrf
 
@@ -15,14 +15,27 @@
             <div class="card mt-4">
                 <div class="card-header"><strong>{{ $key +1 }}</strong> {{ $question->question }}</div>
 
-            <div class="card-body">
-             <ul class="list-group">
-                @foreach($question->answers as $answer)
-                <li class="list-group-item">
-            <input type="radio" name="#" id="answer{{ $answer->id}}">
-                  {{ $answer->answer}}
-                </li>
-             @endforeach
+                <div class="card-body">
+
+                    @error('responses.' . $key . '.answer_id')  
+                        <small class="text-danger">{{ $message }}</small>
+
+                        
+                    @enderror
+
+                <ul class="list-group">
+                    @foreach($question->answers as $answer)
+                    <label for="answer{{ $answer->id}}">
+                    <li class="list-group-item">
+                <input type="radio" name="responses[{{ $key}}][answer_id]" id="answer{{ $answer->id }}"
+                {{(old('responses.' . $key . '.answer_id')== $answer->id) ? 'checked': ''}}
+                class="mr-2" value="{{ $answer->id }}">
+                    {{ $answer->answer}}
+
+                <input type="hidden" name="responses[{{ $key }}][question_id]" value="{{ $question->id}}">     
+                    </li>
+                </label>
+                @endforeach
                                     
          </ul>
         </div>
@@ -30,8 +43,35 @@
             @endforeach
 
 
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp"
+                 placeholder="Enter Name">
+                <small id="nameHelp" class="form-text text-muted">Enter Your Name.</small>
+
+                @error('name')
+                <small class="text-danger">{{$message}}</small>
+                    
+                @enderror
+              </div>
+            
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input name="email" type="email" class="form-control" id="email" 
+                aria-describedby="emailHelp" placeholder="Enter Email">
+                <small id="emailHelp" class="form-text text-muted">Give Your Email Please Master!.</small>
+            
+                @error('email')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+            </div>
+
+
+        <button class="btn btn-dark" type="submit">Complete Survey</button>
+
+
         </form>
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">Create New Questinnaire</div>
 
                 <div class="card-body">
@@ -123,10 +163,10 @@
                         </fieldset>
                       </div>
                     
-                      <button type="submit" class="btn btn-primary">Add Questtion</button>
+                      <button type="submit" class="btn btn-primary">Add Questtion</button> --}}
                 
-                </div>
-            </div>
+                {{-- </div>
+            </div> --}}
         </div>
     </div>
 </div>
