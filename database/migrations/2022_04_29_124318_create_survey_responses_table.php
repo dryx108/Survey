@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('survey_responses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedbigInteger('survey_id');
+            $table->foreignId('survey_id')->constrained('surveys');
             $table->unsignedbigInteger('question_id');
             $table->unsignedbigInteger('answer_id');
             $table->timestamps();

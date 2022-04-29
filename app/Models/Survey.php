@@ -11,11 +11,11 @@ class Survey extends Model
 
     public function questionnaire()
    {
-       return this()->belongsTo(Questionnaire::class);
+       return $this->belongsTo(Questionnaire::class);
    }
    
    public function responses()
    {
-       return $this()->hasMany(SurveyResponse::class);
+       return $this->hasMany(SurveyResponse::class);
    }
 }
