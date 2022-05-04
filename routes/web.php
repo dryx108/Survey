@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Questionnaire;
+// use App\Http\Controllers\Questionnaire;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +30,7 @@ Route::get('questionnaires/{questionnaire}',  [App\Http\Controllers\Questionnair
 
 Route::get('questionnaires/{questionnaire}/questions/create',  [App\Http\Controllers\QuestionController::class, 'create']);
 Route::post('questionnaires/{questionnaire}/questions',  [App\Http\Controllers\QuestionController::class, 'store']);
+Route::post('/delete_questionnaires', 'QuestionController@destroy')->name('questionnaire.delete');
 
 Route::get('/surveys/{questionnaire}-{slug}', [App\Http\Controllers\SurveyController::class, 'show']);
 Route::post('/surveys/{questionnaire}-{slug}', [App\Http\Controllers\SurveyController::class, 'store']);

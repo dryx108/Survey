@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 // use App\Models\Questions;
-use App\Models\{Questionnaire, Questions};
+use App\Models\{Questionnaire, Question};
 // use App\Http\Controllers\Questionnaire;
 use Illuminate\Http\Request;
 
@@ -30,6 +30,21 @@ class QuestionController extends Controller
         $question->answers()->createMany($data['answers']);
 
         return redirect('/questionnaires/'.$questionnaire->id);
-    // }
+    }
+
+
+public function destroy(Request $question)
+{
+
+    // $question->answers()->delete();
+    // $question->delete();
+
+    // dd($question);
+    
+// dd($questionnaire->toArray());
+   return response()->json([
+       'data'=> Question::find($question->id)->delete()
+   ],200);
 }
+
 }

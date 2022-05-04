@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    
+     public function index()
     {
-        return view('home');
+        $questionnaires = auth()->user()->questionnaires;
+
+        return view('home', compact('questionnaires'));
     }
 }

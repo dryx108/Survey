@@ -96,8 +96,9 @@
                         </fieldset>
                       </div>
                     
-                      <button type="submit" class="btn btn-primary">Add Questtion</button>
-                
+                    <br>
+                        <button type="submit" class="btn btn-primary">Add Question</button>
+                    
                 </div>
             </div>
         </div>
