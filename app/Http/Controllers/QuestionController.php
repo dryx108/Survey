@@ -36,14 +36,15 @@ class QuestionController extends Controller
 public function destroy(Request $question)
 {
 
-    // $question->answers()->delete();
-    // $question->delete();
+    $var = Question::find($question->id);
+    $var->answers()->delete();
+    $var->delete();
 
     // dd($question);
     
 // dd($questionnaire->toArray());
    return response()->json([
-       'data'=> Question::find($question->id)->delete()
+       'data'=> 'sample test'
    ],200);
 }
 
