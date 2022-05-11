@@ -32,7 +32,7 @@ class QuestionnaireController extends Controller
 
      $questionnaire->load('questions.answers.responses');
 
-    //  dd($questionnaire);
+    
 
          return view('questionnaire.show', compact('questionnaire')); 
     }

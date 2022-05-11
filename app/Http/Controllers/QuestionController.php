@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function create(Questionnaire $questionnaire)
+        public function create(Questionnaire $questionnaire)
 
     {
-        // dd($questionnaire->toArray());
+        
         return view('question.create', compact('questionnaire'));
     }
 
-    public function store(Questionnaire $questionnaire)
+        public function store(Questionnaire $questionnaire)
     {
         
         $data = request()->validate([
@@ -24,7 +24,6 @@ class QuestionController extends Controller
             'answers.*.answer' => 'required',
         ]);
 
-        //  dd($data['question']);
 
         $question = $questionnaire->questions()->create($data['question']);
         $question->answers()->createMany($data['answers']);
@@ -36,16 +35,13 @@ class QuestionController extends Controller
 public function destroy(Request $question)
 {
 
-    $var = Question::find($question->id);
-    $var->answers()->delete();
-    $var->delete();
 
-    // dd($question);
-    
-// dd($questionnaire->toArray());
-   return response()->json([
-       'data'=> 'sample test'
-   ],200);
+    Question::whereIn('id', $question->toArray()['id'])->delete();
+
+
+    return response()->json([
+       'message'=> 'Deleted Successfully'
+    ],200);
 }
 
 }
