@@ -11,19 +11,14 @@
                     <form action="/questionnaires" method="post">
                     <a class="btn btn-dark" href="/questionnaires/{{$questionnaire->id}}/questions/create">Add new question</a>
                     <a class="btn btn-dark" href="/surveys/{{ $questionnaire->id }}-{{ Str::slug($questionnaire->title) }}">Take Survey</a>
-                    <a type="button" class="btn btn-outline-danger" id="submitForm" onclick="delete_question()" data-toggle="modal" data-target="#locModal">Delete Question</a>
-                  
+                    <a type="button" class="btn btn-outline-danger" id="submitForm" onclick="delete_question()" data-toggle="modal" data-target="#locModal">Delete Question</a>     
                 </div>
             </div>
-
             @foreach ($questionnaire->questions as $question)
-                <div class="card mt-4">
-                    
-                    
+                <div class="card mt-4">             
                     <div class="card-header"> 
                         <span><input type="checkbox" name="cId" onclick="setQuestionId({{$question->id}})" class="checkBoxClass" value="{{$question->id}}" /> <span>{{ $question->question }}
-                    </div>
-                      
+                    </div>                  
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach($question->answers as $answer)
@@ -116,6 +111,7 @@
         }).then(response => {
                     return response.json();
                 }).then(text => {
+                    alert(text.message)
                     location.reload()
                     return console.log(text);
                 }).catch(error => console.log(error));
