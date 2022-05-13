@@ -14,4 +14,9 @@ public function survey()
 {
     return $this->belongsTo(Survey::class);
 }
+
+public function dashboard()
+{
+    return $this->belongsTo(Dashboard::class);
+}
 }

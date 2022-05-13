@@ -44,4 +44,10 @@ public function destroy(Request $question)
     ],200);
 }
 
+public function getQuestion()
+{
+    return Question::with(['responses'])->where('questionnaire_id', request('questionnaire_id'))->get();
+
+}
+
 }

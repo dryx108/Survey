@@ -13,8 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                         <a href="/questionnaires/create" class="btn btn-dark">Create New Questionnaires</a>
+                        <a href="/questionnaires/dashboard" class="btn btn-dark">Dashboard</a>                   
                 </div>
             </div>
             <div class="card mt-4">

@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/questionnaires/create',[App\Http\Controllers\QuestionnaireController::class, 'create']);
-
+Route::get('/questionnaires/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
 Route::post('/questionnaires', [App\Http\Controllers\QuestionnaireController::class, 'store']);
 
 Route::get('questionnaires/{questionnaire}',  [App\Http\Controllers\QuestionnaireController::class, 'show']);
@@ -34,3 +34,4 @@ Route::post('/delete_questionnaires', 'QuestionController@destroy')->name('quest
 
 Route::get('/surveys/{questionnaire}-{slug}', [App\Http\Controllers\SurveyController::class, 'show']);
 Route::post('/surveys/{questionnaire}-{slug}', [App\Http\Controllers\SurveyController::class, 'store']);
+Route::get('/questions' , [App\Http\Controllers\QuestionController::class, 'getQuestion']);

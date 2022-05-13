@@ -11,9 +11,13 @@
                     <form action="/questionnaires" method="post">
                     <a class="btn btn-dark" href="/questionnaires/{{$questionnaire->id}}/questions/create">Add new question</a>
                     <a class="btn btn-dark" href="/surveys/{{ $questionnaire->id }}-{{ Str::slug($questionnaire->title) }}">Take Survey</a>
-                    <a type="button" class="btn btn-outline-danger" id="submitForm" onclick="delete_question()" data-toggle="modal" data-target="#locModal">Delete Question</a>     
+                    <a type="button" class="btn btn-outline-danger" onclick="show_confirm()">Delete Question</a>     
+                
+                
+                
                 </div>
             </div>
+            
             @foreach ($questionnaire->questions as $question)
                 <div class="card mt-4">             
                     <div class="card-header"> 
@@ -34,8 +38,7 @@
                 </div>
             @endforeach
 
-            <div class="modal fade" id="locModal" tabindex="-1" role="dialog" aria-labelledby="locModalLabel" aria-hidden="true">
-
+            {{-- <div class="modal fade" id="locModal" tabindex="-1" role="dialog" aria-labelledby="locModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -48,34 +51,34 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
 
-<script type="text/javascript" defer>
+<script type="text/javascript">
 
-    var locModal = document.getElementById('locModal');
-    var btnclose = document.getElementById('w-change-close');
-    var btnShow= document.getElementById('w-change-location');
+    // var locModal = document.getElementById('locModal');
+    // var btnclose = document.getElementById('w-change-close');
+    // var btnShow= document.getElementById('w-change-location');
 
     var questionId = [];
 
-        btnclose.addEventListener('click', (e) => 
-        {
-            locModal.style.display = "none";
-            locModal.classList.remove('show');
-        });
+        // btnclose.addEventListener('click', (e) => 
+        // {
+        //     locModal.style.display = "none";
+        //     locModal.classList.remove('show');
+        // });
 
-    document.addEventListener('click', function (event) {
+    // document.addEventListener('click', function (event) {
 
-    if (!event.target.matches('.click-me')) return;
+    // if (!event.target.matches('.click-me')) return;
 
-    event.preventDefault();
+    // event.preventDefault();
 
-    console.log(event.target);
+    // console.log(event.target);
 
-    }, false);
+    // }, false);
 
     function getQuestionId(){
         return questionId
@@ -93,8 +96,16 @@
        
     }
 
+    function show_confirm(){
+       
+        if (confirm("Are you sure you want to delete this question?")) {
+            delete_question()
+        }
+
+    }
+
     function delete_question(){
-        const element = document.getElementById('submitForm');
+        // const element = document.getElementById('submitForm');
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
         fetch('http://127.0.0.1:8000/delete_questionnaires', 
@@ -119,6 +130,5 @@
     }
 
 </script>
-
 @endsection
 

@@ -33,7 +33,8 @@
                                 <div class="form-group">
                                     <label for="answer1">Choice 1</label>
                                     <input name="answers[][answer]" type="text" 
-                                    value="{{old('answers.0.answer')}}" 
+                                    value="Very Satisfied"
+                                    {{-- value="{{old('answers.0.answer')}}"  --}}
                                     class="form-control" id="answer1" aria-describedby="choiceHelp"
                                          placeholder="Enter Choice 1">
             
@@ -49,7 +50,8 @@
                                 <div class="form-group">
                                     <label for="answer2">Choice 2</label>
                                     <input name="answers[][answer]" type="text"
-                                    value="{{old('answers.1.answer')}}"  
+                                    value="Satisfied"
+                                    {{-- value="{{old('answers.1.answer')}}"   --}}
                                     class="form-control" id="answer2" aria-describedby="choiceHelp" placeholder="Enter Choice 2">
             
                                     @error('answers.1.answer')
@@ -64,7 +66,8 @@
                                 <div class="form-group">
                                     <label for="answer3">Choice 3</label>
                                     <input name="answers[][answer]" type="text"
-                                    value="{{old('answers.2.answer')}}"  
+                                    value="Neither satisfied nor dissatisfied"
+                                    {{-- value="{{old('answers.2.answer')}}"   --}}
                                     class="form-control" id="answer3" aria-describedby="choiceHelp" placeholder="Enter Choice 3">
             
                                     @error('answers.2.answer')
@@ -80,7 +83,8 @@
                                 <div class="form-group">
                                     <label for="answer4">Choice 4</label>
                                     <input name="answers[][answer]" type="text"
-                                    value="{{old('answers.3.answer')}}"  
+                                    value="Dissatisfied"
+                                    {{-- value="{{old('answers.3.answer')}}"   --}}
                                     class="form-control" id="answer4" aria-describedby="choiceHelp" placeholder="Enter Choice 4">
             
                                     @error('answers.3.answer')
