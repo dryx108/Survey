@@ -46,7 +46,7 @@ public function destroy(Request $question)
 
 public function getQuestion()
 {
-    return Question::with(['responses'])->where('questionnaire_id', request('questionnaire_id'))->get();
+    return Question::with(['responses' => function ($q) { $q->with('answer'); },'answers'])->where('questionnaire_id', request('questionnaire_id'))->get();
 
 }
 

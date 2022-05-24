@@ -15,6 +15,11 @@ public function survey()
     return $this->belongsTo(Survey::class);
 }
 
+public function answer()
+{
+    return $this->belongsTo(Answer::class);
+}
+
 public function dashboard()
 {
     return $this->belongsTo(Dashboard::class);
