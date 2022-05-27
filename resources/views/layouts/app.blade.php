@@ -61,11 +61,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if(Route::has('register'))
-                                    <a class="nav-link dropdown" href="http://127.0.0.1:8000/register"  
-                                    >Register
-                                </a>
-                                    @endif
+                                
+                                    <a class="nav-link dropdown" href="{{ route('register') }}">Add Admin</a>
+        
+                                
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">

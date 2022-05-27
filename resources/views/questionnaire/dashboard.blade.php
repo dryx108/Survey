@@ -12,7 +12,7 @@
             </div> --}}
             <div class="col-md-8">
               <div id="myChartContent">
-                <canvas id="1"></canvas>
+                <canvas name='myChart'></canvas>
             </div>
             </div>
             {{-- <div>
@@ -27,8 +27,15 @@
             </div>
         </div>
 </div>
+
+
+{{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js" ></script> --}}
 <script src="{{ asset('chart.js/chart.js') }}"></script>
+
 <script type="text/javascript">
+ 
+
+  var myChart = null
  var ctx = null
 var question_as_label = []
 var chartId = '0'
@@ -55,7 +62,7 @@ var labels = []
  function getQuestion(){
          var questionnaire_id = document.getElementById("questionnaire").value;
       // console.log(questionnaire_id)
-      ctx = document.getElementById(questionnaire_id)
+      // ctx = document.getElementById(questionnaire_id)
       chartId = questionnaire_id
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -75,6 +82,15 @@ var labels = []
                   console.log('response test', response)
                   question_as_label = response.map(l=>l.question)
                   console.log('question', question_as_label)
+                  // var a = 0
+                  // var b = 0
+                  // var c = 0
+                  // var d = 0
+
+                  datasets[0].data=[]
+                  datasets[1].data=[]
+                  datasets[2].data=[]
+                  datasets[3].data=[]
                   response.forEach(e => {
                     console.log('response item', e)
                     // e.responses.forEach(er => {
@@ -83,7 +99,7 @@ var labels = []
                     // })
                       // e.responses.forEach(i => {
                         // console.log('item',i)
-                        // a = 0,b = 0,c = 0,d = 0
+                        
                         a = e.responses.filter(i => i.answer.answer == 'Very Satisfied').length
                         b = e.responses.filter(i => i.answer.answer == 'Satisfied').length
                         c = e.responses.filter(i => i.answer.answer == 'Neither satisfied nor dissatisfied').length
@@ -92,11 +108,14 @@ var labels = []
                         datasets[1].data.push(b)
                         datasets[2].data.push(c)
                         datasets[3].data.push(d)
+                    
+                        
                     } )
                   // })
                   // test = response.map(e => e.responses)
                   
-                  // console.log('test',test)
+                  console.log('test',questionnaire_id)
+                  document.getElementsByName('myChart')[0].id = questionnaire_id
                  buildChart(datasets, questionnaire_id)
                    
                 }).catch(error => console.log(error));
@@ -135,18 +154,21 @@ var labels = []
       //   options:options
 
       // };
+
       console.log(id)
-      document.getElementById(id).id = id; 
+      document.getElementById(id)
        ctx = document.getElementById(id)
+      //  $('#1').replaceWith($('<canvas id="canvas" height="320px"></canvas>'));
       // ctx.id = id
       
 
       // myChart.clear()
-      var myChart = new Chart(ctx, {type: 'bar', data:data, options:options});
+      myChart?.destroy();
+     myChart = new Chart(ctx, {type: 'bar', data:data, options:options});
       
       
-      // myChart.destroy();
-      // myChart = new Chart(id.toString(), {type: 'bar', data:data, options:options});
+    // myChart.destroy();
+    // myChart = new Chart(id.toString(), {type: 'bar', data:data, options:options});
     // const myChart = new Chart(
     //     document.getElementById('myChart'),
     //     config
