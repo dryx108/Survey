@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Questionnaire::class);
     }
+
+    public function showQuestion()
+    {
+        $questionnaires = auth()->user()->questionnaires;
+
+        return view('home', compact('questionnaires'));
+    }
+
 }
